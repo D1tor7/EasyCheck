@@ -6,7 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="56dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/all"
+        app:srcCompat="@drawable/ic_profile"
+        tools:ignore="ImageContrastCheck,MissingConstraints"
+        tools:layout_editor_absoluteX="355dp"
+        tools:layout_editor_absoluteY="1dp" />
+
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"

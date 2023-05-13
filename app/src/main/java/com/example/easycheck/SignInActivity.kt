@@ -35,6 +35,29 @@ class SignInActivity : AppCompatActivity() {
             }
 
         }
+        binding.signUpTextView.setOnClickListener{
+            val intent=Intent(this, SignUpActivity::class.java)
+            startActivity( intent)
+        }
+
+        binding.recoveryAccountTextView.setOnClickListener{
+            val intent=Intent(this, AccountRecoveryActivity::class.java)
+            startActivity( intent)
+        }
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            if (currentUser.isEmailVerified){
+                reload()
+            }else{
+                val intent=Intent(this,CheckEmailActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun SignIn(email : String, password:String){
@@ -42,7 +65,7 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d("TAG", "signInWithEmail:success")
-                    reaload()
+                    reload()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("TAG", "signInWithEmail:failure", task.exception)
@@ -53,7 +76,7 @@ class SignInActivity : AppCompatActivity() {
                 }
             }
     }
-    private fun reaload (){
+    private fun reload (){
         val intent =Intent(this,MainActivity::class.java)
         this.startActivity(intent)
     }

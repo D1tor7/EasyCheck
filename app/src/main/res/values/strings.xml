@@ -29,4 +29,5 @@
     <string name="title_delete_account">Eliminar cuenta</string>
     <string name="subtitle_delete_account">Por motivos de seguridad para eliminar tu cuenta por completo, debes de ingresar tu contraseña.</string>
     <string name="delete">Eliminar</string>
+    <string name="button">Button</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.easycheck
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.easycheck.databinding.ActivityMainBinding
@@ -18,5 +19,14 @@ private lateinit var binding: ActivityMainBinding
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth=Firebase.auth
+
+        binding.profileImageView.setOnClickListener{
+            val intent=Intent(this, ProfileActivity::class.java)
+            startActivity( intent)
+        }
+
+
     }
+
+
 }
