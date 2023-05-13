@@ -157,6 +157,23 @@
                 android:maxLength="40"
                 android:padding="16dp" />
 
+            <EditText
+                android:id="@+id/dniEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="24dp"
+                android:autofillHints="Numero de DNI"
+                android:background="@drawable/ic_field"
+                android:drawableStart="@drawable/ic_user"
+                android:drawablePadding="16dp"
+                android:ems="10"
+                android:hint="Numero de DNI"
+                android:inputType="textPersonName"
+                android:maxLength="40"
+                android:padding="16dp" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/updateProfileAppCompatButton"
                 android:layout_width="wrap_content"

@@ -10,6 +10,7 @@ import com.example.easycheck.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class ProfileActivity : AppCompatActivity() {
@@ -36,11 +37,12 @@ class ProfileActivity : AppCompatActivity() {
         }
         binding.updateProfileAppCompatButton.setOnClickListener {
             val name=binding.nameEditText.text.toString()
-            updateProfile(name)
+            val dni=binding.dniEditText.text.toString()
+            updateProfile(name, dni)
         }
     }
 
-    private fun updateProfile(name:String){
+    private fun updateProfile(name:String,dni:String){
         val user =auth.currentUser
 
         val profileUpdates= userProfileChangeRequest {
@@ -49,9 +51,25 @@ class ProfileActivity : AppCompatActivity() {
 
         user!!.updateProfile(profileUpdates).addOnCompleteListener{task->
             if(task.isSuccessful){
-                Toast.makeText(baseContext,"Se realizaron los cambios correctamente",
+                val userUpdates = hashMapOf<String, Any>(
+                    "dni" to dni)
+                //Actualiza el DNI en Firestore
+                Firebase.firestore.collection("users").document(user.uid)
+                    .update(userUpdates)
+                    .addOnSuccessListener {
+                        Toast.makeText(baseContext,"Se realizaron los cambios correctamente",
+                            Toast.LENGTH_SHORT).show()
+                        updateUI()
+                    }.addOnFailureListener {
+                        Toast.makeText(baseContext,"Error al actualizar el DNI",
+                            Toast.LENGTH_SHORT).show()
+                    }
+
+
+
+            }else{
+                Toast.makeText(baseContext,"Error al actualizar el nombre",
                     Toast.LENGTH_SHORT).show()
-                updateUI()
             }
 
         }

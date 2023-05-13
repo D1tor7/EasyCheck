@@ -8,18 +8,20 @@ import android.widget.Toast
 import com.example.easycheck.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class SignInActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: ActivitySignInBinding
-
+    private lateinit var firestore: FirebaseFirestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
         // Initialize Firebase Auth
         auth = Firebase.auth
+        firestore = FirebaseFirestore.getInstance()
 
         binding.signInAppCompatButton.setOnClickListener{
             val mEmail=binding.emailEditText.text.toString()
