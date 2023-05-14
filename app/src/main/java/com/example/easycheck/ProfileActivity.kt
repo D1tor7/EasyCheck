@@ -1,5 +1,6 @@
 package com.example.easycheck
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,29 +30,35 @@ class ProfileActivity : AppCompatActivity() {
             signOut()
         }
 
-        updateUI()
-
+        showUserName()
 
         binding.backImageView.setOnClickListener{
             val intent=Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
-
     }
+    private fun showUserName() {
+        val user = auth.currentUser
 
+        if (user != null) {
+            binding.emailTextView.text = user.email
 
-    private fun signOut(){
-        Firebase.auth.signOut()
-        val intent= Intent(this,SignInActivity::class.java)
-        startActivity(intent)
-    }
-    private fun updateUI(){
-        val user=auth.currentUser
+            // Get the user document from Firestore
+            val db = Firebase.firestore
+            val userEmail = user.email
+            val userRef = db.collection("users").whereEqualTo("email", userEmail)
 
-        if (user!=null){
-            binding.emailTextView.text=user.email
-            binding.nameTextView.text=user.displayName
-
+            userRef.get().addOnSuccessListener { querySnapshot ->
+                if (!querySnapshot.isEmpty) {
+                    // Get the first document with the matching email address
+                    val document = querySnapshot.documents[0]
+                    val name = document.getString("name")
+                    binding.nameTextView.text = name
+                }
+            }.addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting user document: ", exception)
+                Toast.makeText(this, "Error obteniendo información del usuario", Toast.LENGTH_SHORT).show()
+            }
 
             Glide
                 .with(this)
@@ -68,4 +75,12 @@ class ProfileActivity : AppCompatActivity() {
                 .into(binding.bgProfileImageView)
         }
     }
+
+    private fun signOut(){
+        Firebase.auth.signOut()
+        val intent= Intent(this,SignInActivity::class.java)
+        startActivity(intent)
+    }
+
+
 }

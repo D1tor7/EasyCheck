@@ -9,22 +9,63 @@
 
     <ImageView
         android:id="@+id/profileImageView"
-        android:layout_width="56dp"
-        android:layout_height="60dp"
+        android:layout_width="57dp"
+        android:layout_height="62dp"
         android:contentDescription="@string/all"
         app:srcCompat="@drawable/ic_profile"
         tools:ignore="ImageContrastCheck,MissingConstraints"
-        tools:layout_editor_absoluteX="355dp"
-        tools:layout_editor_absoluteY="1dp" />
+        tools:layout_editor_absoluteX="357dp"
+        tools:layout_editor_absoluteY="0dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="677dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="62dp">
+
+        <TextView
+            android:id="@+id/textViewnombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOMBRE DEL CLIENTE" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atenderte es un placer" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="669dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CheckIn"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CheckOut"
+                style="?android:attr/buttonBarButtonStyle" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Habitaciones"
+                style="?android:attr/buttonBarButtonStyle" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
