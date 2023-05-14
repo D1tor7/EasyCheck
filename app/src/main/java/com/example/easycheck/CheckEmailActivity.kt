@@ -41,6 +41,10 @@ class CheckEmailActivity : AppCompatActivity() {
         binding.signOutImageView.setOnClickListener {
             signOut()
         }
+        binding.backImageView.setOnClickListener{
+            val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     public override fun onStart() {

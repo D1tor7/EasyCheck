@@ -77,6 +77,40 @@
             android:padding="16dp" />
 
         <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="@string/nombre"
+            android:background="@drawable/ic_field"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="@string/nombre"
+            android:inputType="textPersonName"
+            android:maxLength="16"
+            android:padding="16dp" />
+
+        <EditText
+            android:id="@+id/dniEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="@string/dni"
+            android:background="@drawable/ic_field"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="@string/dni"
+            android:inputType="textPassword"
+            android:maxLength="16"
+            android:padding="16dp" />
+
+        <EditText
             android:id="@+id/passwordEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,7 +147,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="48dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/ic_buttom"
             android:paddingLeft="64dp"
