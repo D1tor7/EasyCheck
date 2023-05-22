@@ -39,33 +39,42 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="669dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckIn"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:text="CheckIn" />
 
             <Button
                 android:id="@+id/button2"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckOut"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:text="CheckOut" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_habitacion"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Habitaciones"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:text="Habitaciones" />
+            <Button
+                android:id="@+id/button_informacion"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Informacion" />
         </LinearLayout>
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
