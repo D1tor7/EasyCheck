@@ -4,6 +4,7 @@
     <string name="password">Contraseña</string>
     <string name="new_password">Nueva contraseña</string>
     <string name="current_password">Contraseña actual</string>
+    <string name="price_format">Precio: %.2f</string>
     <string name="name">Nombre completo</string>
     <string name="email">Email</string>
     <string name="login">Login</string>

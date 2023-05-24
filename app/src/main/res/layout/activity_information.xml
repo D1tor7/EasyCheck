@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".InformationActivity">
+    tools:context=".Controlador.InformationActivity">
 
     <!-- Aquí puedes agregar el componente para mostrar el mapa -->
 

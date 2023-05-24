@@ -14,26 +14,29 @@
         android:theme="@style/Theme.EasyCheck"
         tools:targetApi="31">
         <activity
-            android:name=".InformationActivity"
+            android:name=".Controlador.ReservaActivity"
             android:exported="false" />
         <activity
-            android:name=".RoomActivity"
+            android:name=".Controlador.InformationActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".Controlador.RoomActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".Controlador.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Controlador.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Main" />
         <activity
-            android:name=".AccountRecoveryActivity"
+            android:name=".Controlador.AccountRecoveryActivity"
             android:exported="false" />
         <activity
-            android:name=".CheckEmailActivity"
+            android:name=".Controlador.CheckEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".Controlador.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +45,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Controlador.MainActivity"
             android:exported="false" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD3-bhjWM1I1Svzt2UNFvzbscKScUCLbr0" />

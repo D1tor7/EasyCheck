@@ -5,26 +5,28 @@
 
     <TextView
         android:id="@+id/room_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="153dp"
+        android:layout_height="32dp" />
 
     <TextView
         android:id="@+id/room_npiso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="154dp"
+        android:layout_height="34dp" />
 
     <TextView
         android:id="@+id/room_precio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="165dp"
+        android:layout_height="31dp" />
+
     <TextView
         android:id="@+id/disponibilidadTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="167dp"
+        android:layout_height="34dp" />
+
     <TextView
         android:id="@+id/room_informacion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="202dp"
+        android:layout_height="49dp" />
     <CheckBox
         android:id="@+id/room_disponibilidad"
         android:layout_width="wrap_content"
