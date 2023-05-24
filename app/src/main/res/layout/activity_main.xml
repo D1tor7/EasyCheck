@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controlador.MainActivity">
+    tools:context=".MainActivity">
 
 
     <ImageView
@@ -27,15 +27,40 @@
 
         <TextView
             android:id="@+id/textViewnombre"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NOMBRE DEL CLIENTE" />
+            android:paddingLeft="16dp"
+            android:text="NOMBRE DEL CLIENTE"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Atenderte es un placer" />
+            android:text="Atenderte es un placer"
+            android:paddingLeft="16dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/habitacionEditText"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="busca nuestras mejores habitaciones"
+            android:background="@drawable/ic_field"
+            android:drawableStart="@drawable/ic_email"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:padding="16dp"
+            android:layout_margin="16dp"/>
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,12 +68,15 @@
             android:orientation="horizontal">
 
             <Button
+
+
                 android:id="@+id/button"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckIn" />
+                android:drawableTop="@drawable/ic_email"
+                android:text="Check In" />
 
             <Button
                 android:id="@+id/button2"
@@ -56,7 +84,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckOut" />
+                android:drawableTop="@drawable/ic_email"
+                android:text="Check Out" />
 
             <Button
                 android:id="@+id/button_habitacion"
@@ -64,6 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableTop="@drawable/ic_email"
                 android:text="Habitaciones" />
             <Button
                 android:id="@+id/button_informacion"
@@ -71,10 +101,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableTop="@drawable/ic_email"
                 android:text="Informacion" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Popular"
+            android:padding="16dp"/>
+
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_facebook"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="habitacion 2 camas"
+                android:paddingLeft="16dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="precio55"
+                android:gravity="end"
+                android:paddingRight="16dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="descripcion"
+            android:paddingLeft="16dp"/>
+
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
