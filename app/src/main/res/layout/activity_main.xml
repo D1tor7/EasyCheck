@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Controlador.MainActivity">
 
 
     <ImageView
@@ -12,9 +12,10 @@
         android:layout_width="57dp"
         android:layout_height="62dp"
         android:contentDescription="@string/all"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_profile"
         tools:ignore="ImageContrastCheck,MissingConstraints"
-        tools:layout_editor_absoluteX="357dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <LinearLayout
@@ -53,7 +54,7 @@
             android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="16dp"
             android:ems="10"
-            android:hint="@string/email"
+            android:hint="@string/Buscador"
             android:inputType="textEmailAddress"
             android:padding="16dp"
             android:layout_margin="16dp"/>

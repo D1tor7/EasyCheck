@@ -1,14 +1,20 @@
 package com.example.easycheck.Modelo
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.easycheck.Controlador.ReservaActivity
+import com.example.easycheck.Controlador.RoomFragment
 import com.example.easycheck.R
 
-class RoomAdapter : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
+
+class RoomAdapter(private val context: Context, private val fragment: Fragment) : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>()   {
     private val rooms: MutableList<RoomData> = mutableListOf()
     private val habitacionesSeleccionadas = mutableListOf<RoomData>()
 
@@ -40,7 +46,7 @@ class RoomAdapter : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
         private val disponibilidadCheckBox: CheckBox = itemView.findViewById(R.id.room_disponibilidad)
         private val informacionTextView: TextView = itemView.findViewById(R.id.room_informacion)
         private val disponibilidadTextView: TextView = itemView.findViewById(R.id.disponibilidadTextView)
-
+        private val context = itemView.context
         private lateinit var currentRoom: RoomData
 
         init {
@@ -69,4 +75,12 @@ class RoomAdapter : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
     fun getHabitacionesSeleccionadas(): List<RoomData> {
         return habitacionesSeleccionadas
     }
+
+    fun sendSelectedRooms() {
+        val intent = Intent(fragment.requireContext(), ReservaActivity::class.java)
+        val selectedRoomIds = habitacionesSeleccionadas.map { it.id }
+        intent.putStringArrayListExtra("habitacionesSeleccionadas", ArrayList(selectedRoomIds))
+        fragment.startActivity(intent)
+    }
+
 }

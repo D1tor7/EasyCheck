@@ -30,18 +30,17 @@ class RoomFragment : Fragment() {
 
         roomList = view.findViewById(R.id.room_list)
         roomList.layoutManager = LinearLayoutManager(requireContext())
-        roomAdapter = RoomAdapter()
+        roomAdapter = RoomAdapter(requireContext(), this)
+
         roomList.adapter = roomAdapter
 
 
 
         reservarButton = view.findViewById(R.id.reservar_button)
         reservarButton.setOnClickListener {
-            val selectedRooms = roomAdapter.getHabitacionesSeleccionadas()
-            val intent = Intent(requireContext(), ReservaActivity::class.java)
-            intent.putExtra("habitacionesSeleccionadas", ArrayList(selectedRooms))
-            startActivity(intent)
+            roomAdapter.sendSelectedRooms()
         }
+
         loadRoomsFromFirestore()
 
         return view

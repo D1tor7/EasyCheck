@@ -23,20 +23,20 @@
             android:name=".Controlador.RoomActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.SignUpActivity"
+            android:name=".Controlador.Login.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".Controlador.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Main" />
         <activity
-            android:name=".Controlador.AccountRecoveryActivity"
+            android:name=".Controlador.Login.AccountRecoveryActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.CheckEmailActivity"
+            android:name=".Controlador.Login.CheckEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.SignInActivity"
+            android:name=".Controlador.Login.SignInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.easycheck.Controlador
+package com.example.easycheck.Controlador.Login
 
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
+import com.example.easycheck.Controlador.MainActivity
 import com.example.easycheck.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

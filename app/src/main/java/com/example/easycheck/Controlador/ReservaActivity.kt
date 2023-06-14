@@ -1,30 +1,26 @@
 package com.example.easycheck.Controlador
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.FragmentActivity
 import com.example.easycheck.R
-import com.example.easycheck.Modelo.RoomAdapter
-import com.example.easycheck.Modelo.RoomData
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.ParseException
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.concurrent.TimeUnit
 
 
-class ReservaActivity : AppCompatActivity() {
-    private lateinit var habitacionesSeleccionadas: List<RoomData>
-    private lateinit var fechaIngreso: String
-    private lateinit var fechaSalida: String
-
+class ReservaActivity : FragmentActivity() {
+    private lateinit var habitacionesSeleccionadas: List<String>
     private lateinit var habitacionesTextView: TextView
     private lateinit var precioTextView: TextView
+    private lateinit var diasSpinner: Spinner
     private lateinit var diasTextView: TextView
-    private lateinit var pagarButton: Button
+    private lateinit var reservarButton: Button
 
-    private lateinit var roomAdapter: RoomAdapter
+    private var diasReserva: Int = 0
+
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,102 +28,120 @@ class ReservaActivity : AppCompatActivity() {
 
         habitacionesTextView = findViewById(R.id.habitaciones_textview)
         precioTextView = findViewById(R.id.precio_textview)
+        diasSpinner = findViewById(R.id.dias_reserva_spinner)
         diasTextView = findViewById(R.id.dias_textview)
-        pagarButton = findViewById(R.id.pagar_button)
+        reservarButton = findViewById(R.id.reservar_button)
 
-        roomAdapter = RoomAdapter()
-
-        habitacionesSeleccionadas = roomAdapter.getHabitacionesSeleccionadas()
-        fechaIngreso = intent.getStringExtra("fechaIngreso") ?: ""
-        fechaSalida = intent.getStringExtra("fechaSalida") ?: ""
-
+        habitacionesSeleccionadas = intent.getStringArrayListExtra("habitacionesSeleccionadas") ?: emptyList()
         mostrarResumenReserva()
-        calcularPrecio()
-        calcularDias()
 
-        pagarButton.setOnClickListener {
-            // Realizar el pago y actualizar la disponibilidad de las habitaciones seleccionadas en Firebase
-            val firestore = FirebaseFirestore.getInstance()
+        val diasAdapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.dias_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            diasSpinner.adapter = adapter
+        }
 
-            // Obtener una referencia a la colección "reservas"
-            val reservasCollection = firestore.collection("reservas")
+        diasSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                diasReserva = parent?.getItemAtPosition(position).toString().toInt()
+                calcularPrecio()
+            }
 
-            // Crear un objeto Reserva con los datos necesarios
-            val reserva = hashMapOf(
-                "costo" to calcularPrecioTotal(),
-                "fecha de entrada" to fechaIngreso,
-                "fecha de salida" to fechaSalida,
-                "hora de entrada" to "13:00",
-                "hora de salida" to "12:00",
-                "habitaciones" to obtenerIdsHabitaciones()
-            )
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // No es necesario realizar ninguna acción
+            }
+        }
 
-            // Agregar la reserva a la colección "reservas"
-            reservasCollection.add(reserva)
-                .addOnSuccessListener { documentReference ->
-                    // La reserva se ha agregado correctamente
-                    val reservaId = documentReference.id
-                    // Realizar acciones adicionales si es necesario
-                }
-                .addOnFailureListener { exception ->
-                    // Error al agregar la reserva
-                    // Manejar el error adecuadamente
-                }
+        reservarButton.setOnClickListener {
+            crearReserva()
         }
     }
 
     private fun mostrarResumenReserva() {
         val habitacionesText = StringBuilder()
-        for (habitacion in habitacionesSeleccionadas) {
-            habitacionesText.append(habitacion.id).append(", ")
+        for (habitacionId in habitacionesSeleccionadas) {
+            habitacionesText.append(habitacionId).append(", ")
         }
 
         if (habitacionesText.length >= 2) {
-            habitacionesText.delete(habitacionesText.length - 2, habitacionesText.length) // Eliminar la última coma y espacio
+            habitacionesText.delete(habitacionesText.length - 2, habitacionesText.length)
         }
 
         habitacionesTextView.text = habitacionesText.toString()
     }
 
     private fun calcularPrecio() {
-        val precioTotal = calcularPrecioTotal()
+        val precioHabitacion = obtenerPrecioHabitacion()
+        val precioTotal = precioHabitacion * habitacionesSeleccionadas.size * diasReserva
         precioTextView.text = getString(R.string.price_format, precioTotal)
     }
 
-    private fun calcularPrecioTotal(): Double {
-        var precioTotal = 0.0
-        for (habitacion in habitacionesSeleccionadas) {
-            precioTotal += habitacion.Precio
-        }
-        return precioTotal
+    private fun obtenerPrecioHabitacion(): Double {
+        // Aquí puedes obtener el precio de la habitación desde donde sea que lo almacenes (por ejemplo, desde SharedPreferences)
+        return 90.0
     }
 
-    private fun calcularDias() {
-        if (fechaIngreso.isNotEmpty() && fechaSalida.isNotEmpty()) {
-            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            try {
-                val fechaIngresoDate = dateFormat.parse(fechaIngreso)
-                val fechaSalidaDate = dateFormat.parse(fechaSalida)
+    private fun crearReserva() {
+        val ndias = diasReserva.toString()
+        val costo = obtenerPrecioHabitacion() * habitacionesSeleccionadas.size * diasReserva
+        val habitaciones = habitacionesSeleccionadas.joinToString(", ")
 
-                val daysInMillis = fechaSalidaDate.time - fechaIngresoDate.time
-                val days = TimeUnit.MILLISECONDS.toDays(daysInMillis)
+        val reservaData = hashMapOf(
+            "Ndias" to ndias,
+            "costo" to costo,
+            "habitaciones" to habitaciones
+        )
 
-                diasTextView.text = days.toString()
-            } catch (e: ParseException) {
-                // Handle the ParseException appropriately
-                e.printStackTrace()
+        db.collection("reservas")
+            .add(reservaData)
+            .addOnSuccessListener { documentReference ->
+                // La reserva se agregó exitosamente a Firestore
+                mostrarDialogoReservaExitosa()
+                actualizarDisponibilidadHabitaciones()
             }
-        } else {
-            // Handle the case where fechaIngreso or fechaSalida is empty or null
-        }
+            .addOnFailureListener { exception ->
+                // Manejar errores al agregar la reserva a Firestore
+                mostrarDialogoErrorReserva()
+            }
     }
-
-    private fun obtenerIdsHabitaciones(): String {
-        val idsHabitaciones = StringBuilder()
-        for (habitacion in habitacionesSeleccionadas) {
-            idsHabitaciones.append(habitacion.id).append(", ")
+    private fun mostrarDialogoReservaExitosa() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setTitle("Reserva exitosa")
+        dialogBuilder.setMessage("La reserva se realizó exitosamente.")
+        dialogBuilder.setPositiveButton("Aceptar") { _, _ ->
+            // Redirigir al usuario al MainActivity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish() // Cerrar la actividad actual
         }
-        idsHabitaciones.delete(idsHabitaciones.length - 2, idsHabitaciones.length) // Eliminar la última coma y espacio
-        return idsHabitaciones.toString()
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+    private fun mostrarDialogoErrorReserva() {
+        val dialogBuilder = AlertDialog.Builder(this)
+        dialogBuilder.setTitle("Error")
+        dialogBuilder.setMessage("Error al realizar la reserva.")
+        dialogBuilder.setPositiveButton("Aceptar", null)
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+    private fun actualizarDisponibilidadHabitaciones() {
+        for (habitacionId in habitacionesSeleccionadas) {
+            val habitacionRef = db.collection("rooms").document(habitacionId)
+
+            habitacionRef
+                .update("Disponibilidad", false)
+                .addOnSuccessListener {
+                    // La disponibilidad de la habitación se actualizó exitosamente
+                    Toast.makeText(this, "Disponibilidad de habitación actualizada", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { exception ->
+                    // Manejar errores al actualizar la disponibilidad de la habitación
+                    Toast.makeText(this, "Error al actualizar la disponibilidad de habitación", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 }

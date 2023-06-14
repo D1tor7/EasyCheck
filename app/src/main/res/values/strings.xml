@@ -7,6 +7,7 @@
     <string name="price_format">Precio: %.2f</string>
     <string name="name">Nombre completo</string>
     <string name="email">Email</string>
+    <string name="Buscador">Busca nuestrass mejores habitaciones</string>
     <string name="login">Login</string>
     <string name="repeat_password">Confirma la contraseña</string>
     <string name="signup">Sign Up</string>
@@ -35,4 +36,16 @@
     <string name="dni">dni</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="dias_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

@@ -12,6 +12,21 @@
         android:text="Habitaciones seleccionadas:"
         android:textStyle="bold" />
 
+
+    <TextView
+        android:id="@+id/dias_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Número de días:"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp" />
+    <Spinner
+        android:id="@+id/dias_reserva_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+
     <TextView
         android:id="@+id/precio_textview"
         android:layout_width="match_parent"
@@ -19,20 +34,11 @@
         android:text="Precio total: $0.0"
         android:textStyle="bold"
         android:layout_marginTop="16dp" />
-
-    <TextView
-        android:id="@+id/dias_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Número de días: 0"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp" />
-
     <Button
-        android:id="@+id/pagar_button"
+        android:id="@+id/reservar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pagar Reserva"
+        android:text="Reservar"
         android:layout_marginTop="16dp" />
 
 </LinearLayout>

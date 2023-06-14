@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.easycheck.Controlador.Login.SignInActivity
 import com.example.easycheck.R
 import com.example.easycheck.databinding.ActivityProfileBinding
 import com.google.firebase.auth.FirebaseAuth

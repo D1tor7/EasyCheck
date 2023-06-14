@@ -1,4 +1,4 @@
-package com.example.easycheck.Controlador
+package com.example.easycheck.Controlador.Login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
