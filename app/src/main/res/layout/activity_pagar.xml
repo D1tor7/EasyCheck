@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp"
+    tools:context=".PagoActivity">
+
+    <TextView
+        android:id="@+id/emailcurrentuser_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        android:text="Correo del Usuario Actual" />
+
+    <TextView
+        android:id="@+id/ndias_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emailcurrentuser_textview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:text="Número de días:" />
+
+    <TextView
+        android:id="@+id/ndias_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ndias_label"
+        android:textSize="14sp"
+        android:text="NDias" />
+
+    <TextView
+        android:id="@+id/costo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ndias_textview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:text="Costo:" />
+
+    <TextView
+        android:id="@+id/costo_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/costo_label"
+        android:textSize="14sp"
+        android:text="Costo" />
+
+    <TextView
+        android:id="@+id/habitaciones_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/costo_textview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:text="Habitaciones:" />
+
+    <TextView
+        android:id="@+id/habitaciones_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/habitaciones_label"
+        android:textSize="14sp"
+        android:text="Habitaciones" />
+
+    <TextView
+        android:id="@+id/estado_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/habitaciones_textview"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"
+        android:text="Estado:" />
+
+    <TextView
+        android:id="@+id/estado_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/estado_label"
+        android:textSize="14sp"
+        android:text="Estado" />
+
+    <Button
+        android:id="@+id/cancelar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/estado_textview"
+        android:layout_marginTop="16dp"
+        android:text="Cancelar Reserva" />
+
+    <Button
+        android:id="@+id/pagar_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/estado_textview"
+        android:layout_toRightOf="@id/cancelar_button"
+        android:layout_marginTop="16dp"
+        android:text="Pagar Reserva" />
+
+</RelativeLayout>

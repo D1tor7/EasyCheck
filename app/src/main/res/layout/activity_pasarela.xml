@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Ingrese los datos de la tarjeta de crédito:"
+      android:textSize="16sp"
+      android:textStyle="bold" />
+
+  <EditText
+      android:id="@+id/numeroTarjetaEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Número de tarjeta" />
+
+  <EditText
+      android:id="@+id/nombreTitularEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Nombre del titular" />
+
+  <EditText
+      android:id="@+id/fechaVencimientoEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Fecha de vencimiento (MM/YY)" />
+
+  <EditText
+      android:id="@+id/cvvEditText"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="CVV" />
+
+  <Button
+      android:id="@+id/pagarButton"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Pagar" />
+
+</LinearLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,32 +12,38 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyCheck"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".Controlador.ReservaActivity"
+            android:name=".PasarelaActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.InformationActivity"
+            android:name=".PagoActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.RoomActivity"
+            android:name=".ReservaActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.Login.SignUpActivity"
+            android:name=".controlador.InformationActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.ProfileActivity"
+            android:name=".controlador.RoomActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controlador.login.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controlador.ProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.Main" />
         <activity
-            android:name=".Controlador.Login.AccountRecoveryActivity"
+            android:name=".controlador.login.AccountRecoveryActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.Login.CheckEmailActivity"
+            android:name=".controlador.login.CheckEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".Controlador.Login.SignInActivity"
-            android:exported="true">
+            android:name=".controlador.login.SignInActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controlador.MainActivity"
+            android:name=".MainActivity"
             android:exported="false" />
 
         <meta-data

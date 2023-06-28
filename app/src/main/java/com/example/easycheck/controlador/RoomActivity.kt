@@ -1,0 +1,18 @@
+package com.example.easycheck.controlador
+
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.easycheck.R
+
+
+class RoomActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_room)
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, RoomFragment())
+            .commit()
+    }
+}

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controlador.MainActivity">
+    tools:context=".MainActivity">
 
 
     <ImageView
@@ -80,13 +80,13 @@
                 android:text="Check In" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_misreservas"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableTop="@drawable/ic_email"
-                android:text="Check Out" />
+                android:text="Mis Reservas" />
 
             <Button
                 android:id="@+id/button_habitacion"

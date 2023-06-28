@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="black_500">#262626</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorDefault">#FF0000</color> <!-- Rojo -->
+    <color name="colorPressed">#FF6F00</color> <!-- Naranja -->
+    <color name="colorSelected">#00FF00</color> <!-- Verde -->
 </resources>
