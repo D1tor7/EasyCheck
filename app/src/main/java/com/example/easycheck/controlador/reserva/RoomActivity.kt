@@ -1,4 +1,4 @@
-package com.example.easycheck.controlador
+package com.example.easycheck.controlador.reserva
 
 
 import android.os.Bundle

@@ -1,17 +1,15 @@
-package com.example.easycheck
+package com.example.easycheck.controlador.pago
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
+import com.example.easycheck.MainActivity
+import com.example.easycheck.R
+import com.example.easycheck.modelo.ReservaData
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PagoActivity : AppCompatActivity() {

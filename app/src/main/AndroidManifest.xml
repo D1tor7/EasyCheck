@@ -14,19 +14,19 @@
         android:theme="@style/Theme.EasyCheck"
         tools:targetApi="31" >
         <activity
-            android:name=".PasarelaActivity"
+            android:name=".controlador.pago.PasarelaActivity"
             android:exported="false" />
         <activity
-            android:name=".PagoActivity"
+            android:name=".controlador.pago.PagoActivity"
             android:exported="false" />
         <activity
-            android:name=".ReservaActivity"
+            android:name=".controlador.reserva.ReservaActivity"
             android:exported="false" />
         <activity
             android:name=".controlador.InformationActivity"
             android:exported="false" />
         <activity
-            android:name=".controlador.RoomActivity"
+            android:name=".controlador.reserva.RoomActivity"
             android:exported="false" />
         <activity
             android:name=".controlador.login.SignUpActivity"

@@ -7,7 +7,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".PagoActivity">
+    tools:context=".controlador.pago.PagoActivity">
 
     <TextView
         android:id="@+id/emailcurrentuser_textview"

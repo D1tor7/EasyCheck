@@ -1,4 +1,4 @@
-package com.example.easycheck
+package com.example.easycheck.controlador.pago
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,13 +7,12 @@ import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
+import com.example.easycheck.MainActivity
+import com.example.easycheck.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.tasks.await
 
 class PasarelaActivity : AppCompatActivity() {
 

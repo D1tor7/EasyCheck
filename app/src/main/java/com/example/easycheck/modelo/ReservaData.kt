@@ -1,4 +1,4 @@
-package com.example.easycheck
+package com.example.easycheck.modelo
 
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.auth.User

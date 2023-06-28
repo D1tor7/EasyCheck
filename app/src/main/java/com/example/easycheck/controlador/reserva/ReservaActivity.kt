@@ -1,4 +1,4 @@
-package com.example.easycheck
+package com.example.easycheck.controlador.reserva
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentActivity
+import com.example.easycheck.MainActivity
+import com.example.easycheck.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

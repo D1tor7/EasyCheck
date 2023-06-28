@@ -1,4 +1,4 @@
-package com.example.easycheck.controlador
+package com.example.easycheck.controlador.reserva
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easycheck.modelo.RoomAdapter
 import com.example.easycheck.modelo.RoomData
 import com.example.easycheck.R
+import com.example.easycheck.controlador.reserva.RoomAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RoomFragment : Fragment() {

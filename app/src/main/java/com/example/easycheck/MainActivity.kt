@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.easycheck.controlador.InformationActivity
 import com.example.easycheck.controlador.ProfileActivity
-import com.example.easycheck.controlador.RoomActivity
+import com.example.easycheck.controlador.pago.PagoActivity
+import com.example.easycheck.controlador.reserva.RoomActivity
 import com.example.easycheck.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

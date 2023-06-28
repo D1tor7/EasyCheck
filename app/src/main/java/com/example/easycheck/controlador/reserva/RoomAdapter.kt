@@ -1,4 +1,4 @@
-package com.example.easycheck.modelo
+package com.example.easycheck.controlador.reserva
 
 import android.content.Context
 import android.content.Intent
@@ -9,8 +9,8 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.easycheck.ReservaActivity
 import com.example.easycheck.R
+import com.example.easycheck.modelo.RoomData
 
 
 class RoomAdapter(private val context: Context, private val fragment: Fragment) : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>()   {
