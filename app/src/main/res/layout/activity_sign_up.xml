@@ -92,6 +92,22 @@
             android:inputType="textPersonName"
             android:maxLength="16"
             android:padding="16dp" />
+        <EditText
+            android:id="@+id/cellphoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:autofillHints="@string/dni"
+            android:background="@drawable/ic_field"
+            android:drawableStart="@drawable/ic_lock"
+            android:drawablePadding="16dp"
+            android:ems="10"
+            android:hint="@string/dni"
+            android:inputType="text|phone"
+            android:maxLength="16"
+            android:padding="16dp" />
 
         <EditText
             android:id="@+id/dniEditText"
@@ -154,5 +170,6 @@
             android:paddingRight="64dp"
             android:text="@string/signup"
             android:textColor="@color/white" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

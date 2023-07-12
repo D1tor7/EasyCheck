@@ -37,6 +37,10 @@ class ProfileActivity : AppCompatActivity() {
             val intent=Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        binding.buttonCambiarinformacion.setOnClickListener{
+            val intent=Intent(this, CambiarInformacionActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun showUserName() {
         val user = auth.currentUser

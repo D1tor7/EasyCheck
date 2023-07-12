@@ -33,6 +33,7 @@ class SignUpActivity : AppCompatActivity() {
             val mrepeatPassword=binding.repeatPasswordEditText.text.toString()
             val mName = binding.nameEditText.text.toString()
             val mDni = binding.dniEditText.text.toString()
+            val mCellPhone=binding.cellphoneEditText.text.toString()
 
             val passwordRegex=Pattern.compile(
                 ".{6,}"+"$")//tener almenos 6 caracteres
@@ -48,7 +49,7 @@ class SignUpActivity : AppCompatActivity() {
             }else if (mDni.isEmpty() || mDni.length != 8){
                 Toast.makeText(baseContext, "Ingrese un dni válido", Toast.LENGTH_SHORT,).show()
             }else{
-                createAccount(mEmail,mPassword,mName,mDni)
+                createAccount(mEmail, mPassword, mName, mDni, mCellPhone)
                 Toast.makeText(baseContext, "Cuenta Creada Satisfactoriamente", Toast.LENGTH_SHORT,).show()
             }
         }
@@ -72,7 +73,8 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun createAccount(email: String, password: String, name: String, dni: String) {
+    private fun createAccount(email: String, password: String, name: String, dni: String, cellPhone: String) {
+
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -80,7 +82,8 @@ class SignUpActivity : AppCompatActivity() {
                         "email" to email,
                         "password" to password,
                         "name" to name,
-                        "dni" to dni
+                        "dni" to dni,
+                        "cellPhone" to cellPhone
                     )
 
                     // Agregar el documento a la colección "users" de Firestore

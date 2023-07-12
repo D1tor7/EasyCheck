@@ -144,8 +144,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="16dp"
                 android:orientation="horizontal">
@@ -156,6 +156,13 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:text="@string/change_password" />
+
+                <Button
+                    android:id="@+id/button_cambiarinformacion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Editar Informacion" />
 
                 <Space
                     android:layout_width="0dp"
@@ -168,6 +175,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:text="@string/delete_account" />
+
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
