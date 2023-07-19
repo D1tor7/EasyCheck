@@ -7,5 +7,6 @@ data class ReservaData(
     val pagado: Boolean?,
     val costo: Double?,
     val habitaciones: String?,
-    val user: String?
+    val user: String?,
+    var claveUnica: String? // Agregar el campo claveUnica al modelo
 )

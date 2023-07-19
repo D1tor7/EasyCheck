@@ -90,11 +90,26 @@
         android:textSize="14sp"
         android:text="Estado" />
 
+    <TextView
+        android:id="@+id/clave_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/estado_textview"
+        android:layout_marginTop="16dp"
+        android:text="Clave:" />
+
+    <TextView
+        android:id="@+id/clave_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/clave_label"
+        android:text="Clave" />
+
     <Button
         android:id="@+id/cancelar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/estado_textview"
+        android:layout_below="@id/clave_textview"
         android:layout_marginTop="16dp"
         android:text="Cancelar Reserva" />
 
@@ -102,7 +117,7 @@
         android:id="@+id/pagar_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/estado_textview"
+        android:layout_below="@id/clave_textview"
         android:layout_toRightOf="@id/cancelar_button"
         android:layout_marginTop="16dp"
         android:text="Pagar Reserva" />

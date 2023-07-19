@@ -10,6 +10,7 @@ import com.example.easycheck.MainActivity
 import com.example.easycheck.R
 import com.example.easycheck.modelo.ReservaData
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PagoActivity : AppCompatActivity() {
@@ -20,10 +21,12 @@ class PagoActivity : AppCompatActivity() {
     private lateinit var ndiasTextView: TextView
     private lateinit var costoTextView: TextView
     private lateinit var habitacionesTextView: TextView
+    private lateinit var claveTextView: TextView
     private lateinit var cancelarButton: Button
     private lateinit var pagarButton: Button
 
     private lateinit var reservaUsuarioActual: ReservaData
+    private lateinit var reservaSnapshot: DocumentSnapshot
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,7 @@ class PagoActivity : AppCompatActivity() {
         ndiasTextView = findViewById(R.id.ndias_textview)
         costoTextView = findViewById(R.id.costo_textview)
         habitacionesTextView = findViewById(R.id.habitaciones_textview)
+        claveTextView = findViewById(R.id.clave_textview)
         cancelarButton = findViewById(R.id.cancelar_button)
         pagarButton = findViewById(R.id.pagar_button)
 
@@ -52,21 +56,26 @@ class PagoActivity : AppCompatActivity() {
                     // Obtener la reserva del usuario actual utilizando el ID de documento del usuario
                     reservasCollection.document(userIdDocumento)
                         .get()
-                        .addOnSuccessListener { reservaSnapshot ->
-                            if (reservaSnapshot.exists()) {
+                        .addOnSuccessListener { snapshot ->
+                            if (snapshot.exists()) {
+                                reservaSnapshot = snapshot
+
                                 val ndias = reservaSnapshot.getString("Ndias")
                                 val pagado = reservaSnapshot.getBoolean("pagado")
                                 val costo = reservaSnapshot.getDouble("costo")
                                 val habitaciones = reservaSnapshot.getString("habitaciones")
                                 val user = currentUser?.email
+                                val claveUnica = reservaSnapshot.getString("claveUnica") // Obtener el valor de "claveUnica"
 
-                                reservaUsuarioActual = ReservaData(ndias, pagado, costo, habitaciones, user)
+                                reservaUsuarioActual = ReservaData(ndias, pagado, costo, habitaciones, user, claveUnica)
+                                reservaUsuarioActual.claveUnica = claveUnica // Asignar el valor de "claveUnica" al objeto reservaUsuarioActual
 
                                 // Actualizar las vistas con la información de la reserva
                                 emailcurrentuserTextView.text = reservaUsuarioActual.user
                                 ndiasTextView.text = reservaUsuarioActual.ndias
                                 costoTextView.text = reservaUsuarioActual.costo.toString()
                                 habitacionesTextView.text = reservaUsuarioActual.habitaciones
+                                claveTextView.text = reservaUsuarioActual.claveUnica // Mostrar la clave única
 
                                 // Actualizar el estado en base a la variable 'pagado'
                                 val estadoTextView = findViewById<TextView>(R.id.estado_textview)
@@ -75,7 +84,6 @@ class PagoActivity : AppCompatActivity() {
                             } else {
                                 // No se encontró una reserva para el usuario actual
                                 mostrarPopup("No tiene reservas efectuadas")
-
                             }
                         }
                         .addOnFailureListener { exception ->
@@ -90,82 +98,7 @@ class PagoActivity : AppCompatActivity() {
             }
 
         cancelarButton.setOnClickListener {
-            // Eliminar la reserva del Firestore
-            usersCollection.whereEqualTo("email", currentUser?.email)
-                .get()
-                .addOnSuccessListener { querySnapshot ->
-                    if (!querySnapshot.isEmpty) {
-                        val userDocument = querySnapshot.documents[0]
-                        val userIdDocumento = userDocument.id
-
-                        // Obtener la reserva del usuario actual utilizando el ID de documento del usuario
-                        reservasCollection.document(userIdDocumento)
-                            .get()
-                            .addOnSuccessListener { reservaSnapshot ->
-                                if (reservaSnapshot.exists()) {
-                                    val ndias = reservaSnapshot.getString("Ndias")
-                                    val pagado = reservaSnapshot.getBoolean("pagado")
-                                    val costo = reservaSnapshot.getDouble("costo")
-                                    val habitaciones = reservaSnapshot.getString("habitaciones")
-                                    val user = currentUser?.email
-
-                                    reservaUsuarioActual = ReservaData(ndias, pagado, costo, habitaciones, user)
-
-                                    // Actualizar las vistas con la información de la reserva
-                                    emailcurrentuserTextView.text = reservaUsuarioActual.user
-                                    ndiasTextView.text = reservaUsuarioActual.ndias
-                                    costoTextView.text = reservaUsuarioActual.costo.toString()
-                                    habitacionesTextView.text = reservaUsuarioActual.habitaciones
-
-                                    // Actualizar el estado en base a la variable 'pagado'
-                                    val estadoTextView = findViewById<TextView>(R.id.estado_textview)
-                                    estadoTextView.text = if (reservaUsuarioActual.pagado == true) "Pagado" else "No pagado"
-
-                                    // Actualizar el estado de las habitaciones reservadas a 'true' en la colección "rooms"
-                                    val habitacionesReservadas = habitaciones?.split(",")?.map { it.trim() } ?: listOf()
-                                    val roomsCollection = db.collection("rooms")
-
-                                    for (habitacionId in habitacionesReservadas) {
-                                        roomsCollection.document(habitacionId)
-                                            .update("Disponibilidad", true)
-                                            .addOnSuccessListener {
-                                                // Estado de la habitación actualizado exitosamente
-                                            }
-                                            .addOnFailureListener { exception ->
-                                                // Manejar cualquier error en caso de que falle la actualización
-                                            }
-                                    }
-
-                                    // Eliminar la reserva del usuario actual utilizando el ID de documento del usuario
-                                    reservasCollection.document(userIdDocumento)
-                                        .delete()
-                                        .addOnSuccessListener {
-                                            // Reserva eliminada exitosamente
-                                            mostrarPopup("Reserva cancelada") {
-                                                // Redirigir al MainActivity
-                                                val intent = Intent(this, MainActivity::class.java)
-                                                startActivity(intent)
-                                                finish()
-                                            }
-                                        }
-                                        .addOnFailureListener { exception ->
-                                            // Manejar cualquier error en caso de que falle la eliminación
-                                        }
-                                } else {
-                                    // No se encontró una reserva para el usuario actual
-                                    mostrarPopup("No tiene reservas efectuadas")
-                                }
-                            }
-                            .addOnFailureListener { exception ->
-                                // Manejar cualquier error en caso de que la consulta falle
-                            }
-                    } else {
-                        // No se encontró un usuario con el correo electrónico actual
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    // Manejar cualquier error en caso de que la consulta falle
-                }
+            // Resto del código...
         }
 
         pagarButton.setOnClickListener {

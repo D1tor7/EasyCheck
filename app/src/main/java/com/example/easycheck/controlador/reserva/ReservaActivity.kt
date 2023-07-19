@@ -11,6 +11,8 @@ import com.example.easycheck.R
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import java.util.*
+import kotlin.random.Random
 
 class ReservaActivity : FragmentActivity() {
     private lateinit var habitacionesSeleccionadas: List<String>
@@ -95,12 +97,15 @@ class ReservaActivity : FragmentActivity() {
 
         val user: FirebaseUser? = auth.currentUser
         val userEmail = user?.email ?: ""
+        val claveUnica = generarClaveUnica(8)
+
         val reservaData = hashMapOf(
             "Ndias" to ndias,
             "pagado" to false,
             "costo" to costo,
             "habitaciones" to habitaciones,
-            "user" to userEmail // Almacena el correo del usuario actual en el campo "user"
+            "user" to userEmail,
+            "claveUnica" to claveUnica
         )
 
         val userRef = db.collection("users").whereEqualTo("email", userEmail)
@@ -108,20 +113,18 @@ class ReservaActivity : FragmentActivity() {
         userRef.get().addOnSuccessListener { querySnapshot ->
             if (!querySnapshot.isEmpty) {
                 val reservasCollection = db.collection("reservas")
-                val reservaDocumento = reservasCollection.document(userEmail) // Utilizar el correo del usuario como ID del documento
+                val reservaDocumento = reservasCollection.document(userEmail)
 
                 reservaDocumento.set(reservaData)
                     .addOnSuccessListener {
-                        // La reserva se agregó exitosamente a Firestore
+                        // La reserva se actualizó exitosamente en Firestore
                         mostrarDialogoReservaExitosa()
                         actualizarDisponibilidadHabitaciones()
                     }
-                    .addOnFailureListener { exception ->
-                        // Manejar errores al agregar la reserva a Firestore
+                    .addOnFailureListener {
                         mostrarDialogoErrorReserva()
                     }
             } else {
-                // No se encontró un documento con el correo electrónico del usuario
                 mostrarDialogoErrorReserva()
             }
         }
@@ -165,5 +168,16 @@ class ReservaActivity : FragmentActivity() {
                     Toast.makeText(this, "Error al actualizar la disponibilidad de habitación", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
+    fun generarClaveUnica(longitud: Int): String {
+        val caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        val clave = StringBuilder()
+
+        repeat(longitud) {
+            val indice = Random.nextInt(caracteres.length)
+            clave.append(caracteres[indice])
+        }
+
+        return clave.toString()
     }
 }

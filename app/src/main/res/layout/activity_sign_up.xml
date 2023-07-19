@@ -19,46 +19,15 @@
         android:layout_marginStart="16dp" />
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/backImageView"
-        tools:ignore="UseCompoundDrawables">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:contentDescription="@string/all"
-            app:srcCompat="@drawable/ic_logo"
-            tools:ignore="VectorDrawableCompat" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/title_active_login"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="418dp"
+        android:layout_height="627dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
             android:id="@+id/emailEditText"
@@ -92,6 +61,7 @@
             android:inputType="textPersonName"
             android:maxLength="16"
             android:padding="16dp" />
+
         <EditText
             android:id="@+id/cellphoneEditText"
             android:layout_width="match_parent"
@@ -99,12 +69,12 @@
             android:layout_marginLeft="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginRight="24dp"
-            android:autofillHints="@string/dni"
+            android:autofillHints="@string/cellphone"
             android:background="@drawable/ic_field"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="16dp"
             android:ems="10"
-            android:hint="@string/dni"
+            android:hint="@string/cellphone"
             android:inputType="text|phone"
             android:maxLength="16"
             android:padding="16dp" />
